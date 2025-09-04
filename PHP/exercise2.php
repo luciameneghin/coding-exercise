@@ -1,4 +1,20 @@
 <?php
+function contLetters($str)
+{
+  $count = [];
+  $arrayLettere = str_split($str);
+
+  for ($i = 0; $i < count($arrayLettere); $i++) {
+    $lettera = $arrayLettere[$i];
+    if (isset($count[$lettera])) {
+      $count[$lettera] = $count[$lettera] + 1;
+    } else {
+      $count[$lettera] = 1;
+    }
+  }
+  return $count;
+}
+
 function anagrams($str1, $str2)
 {
   $str1Pulita = strtolower(preg_replace('/[^a-z]/i', '', $str1));
@@ -8,21 +24,6 @@ function anagrams($str1, $str2)
     return false;
   }
 
-  function contLetters($str)
-  {
-    $count = [];
-    $arrayLettere = str_split($str);
-
-    for ($i = 0; $i < count($arrayLettere); $i++) {
-      $lettera = $arrayLettere[$i];
-      if (isset($count[$lettera])) {
-        $count[$lettera] = $count[$lettera] + 1;
-      } else {
-        $count[$lettera] = 1;
-      };
-    };
-    return $count;
-  }
 
   $count1 = contLetters($str1Pulita);
   $count2 = contLetters($str2Pulita);
@@ -34,10 +35,10 @@ function anagrams($str1, $str2)
   }
 
   return true;
-
-  echo anagrams('ciao', 'ioca') ? "true" : "false";
-  echo "\n";
-  echo anagrams('listen', 'silent') ? "true" : "false";
-  echo "\n";
-  echo anagrams('hello', 'world') ? "true" : "false";
 }
+
+echo anagrams('ciao', 'ioca') ? "true" : "false";
+echo "\n";
+echo anagrams('listen', 'silent') ? "true" : "false";
+echo "\n";
+echo anagrams('hello', 'world') ? "true" : "false";
